@@ -852,8 +852,13 @@
       <nav id="navMenu">
         <ul>
           <li><a href="https://minal0p.github.io/IEEE-ET5/">Home</a></li>
-          <li><a href="#ieee-et5-ai-helper">AI Helper</a></li>
-          <li><a href="#contact-us">Contact Us</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5/#about">About Us</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5/#board-members">Board Team</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5-Membership/">Membership</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5-Events/">Events</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5-Resources/">Resources</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5-Ai/">AI Helper</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5/#contact-us">Contact Us</a></li>
         </ul>
       </nav>
       <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
@@ -1032,8 +1037,13 @@
         <h3>Quick Links</h3>
         <ul>
           <li><a href="https://minal0p.github.io/IEEE-ET5/">Home</a></li>
-          <li><a href="#ieee-et5-ai-helper">AI Helper</a></li>
-          <li><a href="#contact-us">Contact Us</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5/#about">About Us</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5/#board-members">Board Team</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5-Membership/">Membership</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5-Events/">Events</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5-Resources/">Resources</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5-Ai/">AI Helper</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5/#contact-us">Contact Us</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -1058,6 +1068,15 @@
       © 2025 IEEE ET5 Student Branch. All rights reserved.
     </div>
   </footer>
+
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">×</span>
+      <h3>Success!</h3>
+      <p>Thank you for contacting us. We will get back to you as soon as possible.</p>
+      <button class="cta-button" id="modalCloseButton">Okay</button>
+    </div>
+  </div>
 
   <script>
     // Mobile Menu Toggle
@@ -1100,8 +1119,8 @@
 
     // Smooth Scroll to Anchors for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      // Exclude the 'Home' link from smooth scrolling if it's an external URL
-      if (anchor.getAttribute('href') === 'https://minal0p.github.io/IEEE-ET5/') {
+      // Exclude external links from smooth scrolling
+      if (anchor.getAttribute('href').startsWith('http') || anchor.getAttribute('href').startsWith('https')) {
         return; // Skip smooth scroll for this specific link
       }
 
