@@ -1039,6 +1039,9 @@
         chatHistory.push({ role: "user", parts: [{ text: prompt }] });
 
         const payload = { contents: chatHistory };
+        // IMPORTANT: The API key should be provided by the environment.
+        // If you are running this outside the intended environment or if the AI features are failing with a 403 error,
+        // you may need to provide your own API key here.
         const apiKey = ""; // Canvas will automatically provide the API key at runtime
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
@@ -1051,7 +1054,13 @@
 
             if (!response.ok) {
                  const errorText = await response.text();
-                 throw new Error(`API Error: ${response.status} ${errorText}`);
+                 let errorMessage = `API Error: ${response.status}.`;
+                 if(response.status === 403) {
+                     errorMessage += "<br><br><b>Troubleshooting Tip:</b> This is a permission error. The API key might be missing, invalid, or not properly configured for this environment. Please ensure a valid API key is being used."
+                 } else {
+                     errorMessage += `<br><br>Details: ${errorText}`;
+                 }
+                 throw new Error(errorMessage);
             }
 
             const result = await response.json();
@@ -1070,7 +1079,7 @@
                 console.error('Gemini API response structure unexpected:', result);
             }
         } catch (error) {
-            outputDiv.innerHTML = `<p style="color: var(--error);">An error occurred: ${error.message}</p>`;
+            outputDiv.innerHTML = `<p style="color: var(--error);">${error.message}</p>`;
             outputDiv.style.display = 'block';
             console.error('Error calling Gemini API:', error);
         } finally {
