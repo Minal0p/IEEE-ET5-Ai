@@ -1,838 +1,705 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Official website of the IEEE ET5 Student Branch at New Cairo Academy, Fifth Settlement. Discover our events, educational, and technical resources.">
-  <meta property="og:title" content="IEEE ET5 Student Branch - Institute of Engineering and Technology, Fifth Settlement">
-  <meta property="og:description" content="Official website of the IEEE ET5 Student Branch at the Institute of Engineering and Technology, Fifth Settlement. Discover our events, educational, and technical resources.">
-  <meta property="og:image" content="https://www.ieee.org/content/dam/ieee-web/standards/images/logo.svg ">
-  <meta property="og:url" content="https://yourwebsite.com ">
-  <meta name="twitter:card" content="summary_large_image">
-  <title>IEEE ET5 Student Branch</title>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css ">
-
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'GA_MEASUREMENT_ID'); // Replace 'GA_MEASUREMENT_ID' with your actual Google Analytics Measurement ID
-  </script>
-
-  <style>
-    /* Root variables for consistent theming */
-    :root {
-      --primary: #00629B; /* IEEE Blue */
-      --secondary: #FFD100; /* IEEE Gold */
-      --dark: #003865; /* Dark Blue */
-      --light: #E9F1F7; /* Light Grayish Blue */
-      --accent: #00A5E3; /* Lighter Blue */
-      --success: #28a745; /* Green for success messages */
-      --error: #dc3545; /* Red for error messages */
-    }
-
-    /* Universal box-sizing and font family */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Tajawal', sans-serif; /* Keeping Tajawal for now, but can be changed to an English font */
-    }
-
-    body {
-      line-height: 1.6;
-      color: #333;
-      background-color: var(--light); /* Base background color */
-      scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-      /* Subtle background pattern for the entire page (parallax effect) */
-      background-image:
-        radial-gradient(circle at 10% 20%, rgba(0, 98, 155, 0.05) 5%, transparent 5%), /* Increased opacity */
-        radial-gradient(circle at 90% 80%, rgba(255, 209, 0, 0.05) 5%, transparent 5%); /* Increased opacity */
-      background-size: 50px 50px, 50px 50px; /* Size of the repeating dots */
-      background-attachment: fixed; /* Makes background fixed relative to viewport for parallax */
-    }
-
-    /* Basic Typography */
-    h1, h2, h3 {
-      font-weight: bold;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* Lazy loading image effect */
-    img[loading="lazy"] {
-      opacity: 0.8;
-      transition: opacity 0.3s ease-in-out;
-    }
-
-    img[loading="lazy"]:loaded {
-      opacity: 1;
-    }
-
-    /* Header Styling */
-    header#header {
-      background: linear-gradient(120deg, var(--primary), var(--accent));
-      color: white;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease, border-bottom 0.3s ease; /* Smooth transition for background and border */
-    }
-
-    /* Header background when scrolled */
-    header#header.scrolled {
-      background-color: var(--dark); /* Solid dark blue when scrolled */
-      border-bottom: 3px solid var(--secondary); /* Add a border on scroll */
-    }
-
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      animation: fadeInDown 1s ease;
-    }
-
-    .logo img {
-      height: 50px;
-      margin-right: 10px; /* Space between logo and text for LTR */
-      border-radius: 50%; /* Make logo round */
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Subtle shadow for logo */
-    }
-
-    .logo-text h1 {
-      font-size: 1.5rem;
-      margin: 0;
-      line-height: 1.2;
-    }
-
-    .logo-text span {
-      font-size: 0.8rem;
-      opacity: 0.8;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-    }
-
-    nav ul li a {
-      color: white;
-      font-weight: 500;
-      position: relative;
-      transition: all 0.3s ease;
-      padding-bottom: 5px; /* Space for underline effect */
-    }
-
-    /* Navigation underline effect */
-    nav ul li a::after {
-      content: '';
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      bottom: 0;
-      left: 0; /* For LTR */
-      background: var(--secondary);
-      transition: width 0.3s ease;
-    }
-
-    nav ul li a:hover::after {
-      width: 100%;
-      right: 0; /* For LTR */
-    }
-
-    nav ul li a:hover {
-      color: var(--secondary);
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem; /* Slightly larger for touch */
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: white;
-      padding: 0.5rem;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    .menu-toggle:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Mobile navigation */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      nav {
-        display: none;
-        width: 100%;
-        background: var(--primary);
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      nav.active {
-        display: block;
-        animation: fadeIn 0.5s ease;
-      }
-
-      nav ul {
-        flex-direction: column;
-        padding: 1rem 0;
-        text-align: left; /* Align to left for LTR */
-      }
-
-      nav ul li {
-        margin: 0.5rem 0;
-        padding: 0 1rem;
-      }
-    }
-
-    main {
-      padding: 2rem 1rem;
-      max-width: 1200px;
-      margin: auto;
-      position: relative; /* For z-index stacking */
-      z-index: 2; /* Ensure main content is above body background */
-      background-color: transparent; /* Allow body background to show through */
-    }
-
-    section {
-      padding: 4rem 2rem;
-      direction: ltr; /* Ensure LTR for content */
-      text-align: center; /* Center section content */
-      position: relative; /* For z-index stacking */
-      z-index: 2; /* Ensure section content is above body background */
-      background-color: white; /* Solid background to cover body pattern */
-      border-radius: 10px; /* Rounded corners for sections */
-      margin-bottom: 2rem; /* Space between sections */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow for sections */
-    }
-
-    /* Hero Section Specific Styles and Animations */
-    #home {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      color: white;
-      min-height: 80vh; /* Make hero section taller */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative; /* Crucial for pseudo-elements */
-      overflow: hidden; /* Hide overflow from animations */
-      z-index: 2; /* Ensure content is above body background */
-      border-radius: 10px; /* Rounded corners for hero */
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* More prominent shadow for hero */
-    }
-
-    #home .section-title {
-      color: white; /* White title for hero section */
-      animation: fadeInUp 1s ease-out forwards; /* Animation for title */
-      animation-delay: 0.2s;
-    }
-
-    #home p {
-      color: rgba(255, 255, 255, 0.9);
-      animation: fadeInUp 1s ease-out forwards; /* Animation for paragraph */
-      animation-delay: 0.4s;
-    }
-
-    #home .cta-button {
-      animation: fadeInUp 1s ease-out forwards; /* Animation for button */
-      animation-delay: 0.6s;
-    }
-
-    /* Background animations for hero section */
-    #home::before,
-    #home::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1; /* Below content */
-      opacity: 0.15; /* Subtle */
-    }
-
-    #home::before {
-      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 10%, transparent 70%);
-      animation: rotateBackground 20s linear infinite;
-      transform-origin: center center;
-    }
-
-    #home::after {
-      background: repeating-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.05) 10px,
-        transparent 10px,
-        transparent 20px
-      );
-      animation: panBackground 30s linear infinite;
-      background-size: 40px 40px; /* Size of the repeating pattern */
-    }
-
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: var(--primary);
-      position: relative;
-      display: inline-block;
-      padding-bottom: 15px; /* Space for underline */
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      width: 50%;
-      height: 4px;
-      background: var(--secondary);
-      bottom: 0; /* Position at the bottom of the title */
-      left: 25%;
-      border-radius: 50px;
-    }
-
-    /* General card styling (kept for AI Helper features) */
-    .ai-helper-feature {
-      background: white;
-      border-radius: 10px;
-      padding: 2rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      margin-bottom: 2rem; /* Space between features */
-      text-align: left;
-      border-left: 5px solid var(--secondary); /* A different border color for features within AI helper */
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      max-width: 800px; /* Max width for individual feature cards */
-      margin-left: auto;
-      margin-right: auto; /* Center the feature cards */
-    }
-
-    .ai-helper-feature:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-
-    .ai-helper-feature h3 {
-      font-size: 1.8rem;
-      color: var(--dark);
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--light);
-      text-align: center; /* Center feature titles */
-    }
-
-    .ai-helper-feature p.description {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      color: #666;
-    }
-
-    .ai-helper-feature .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .ai-helper-feature .cta-button {
-      margin-top: 1rem;
-      width: auto; /* Allow button to size naturally */
-      display: block; /* Make button full width of its container */
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .ai-helper-feature .loading-indicator {
-      display: none;
-      margin-top: 1rem;
-      color: var(--primary);
-      font-weight: bold;
-      text-align: center;
-    }
-
-    /* Specific styling for the generated output within AI Helper features */
-    .llm-output-container {
-      background: var(--light); /* Lighter background for the output itself */
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      padding: 1.5rem;
-      margin-top: 1.5rem;
-      text-align: left; /* Align text to the left for better readability */
-      display: none; /* Hidden by default */
-      border-left: 5px solid var(--primary); /* Primary color border for output */
-    }
-
-    .llm-output-container h3 {
-      font-size: 1.4rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px dashed var(--light); /* Subtle separator */
-    }
-
-    .llm-output-container p {
-      margin-bottom: 1rem; /* Add spacing between paragraphs */
-      font-size: 1rem;
-      line-height: 1.8; /* Improve line spacing for readability */
-      color: #555;
-    }
-
-    .llm-output-container p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Ensure placeholders are aligned with LTR */
-    .form-group textarea, .form-group input {
-      direction: ltr; /* Ensure LTR for input fields */
-      text-align: left; /* Align placeholder text to the left */
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .form-group textarea:focus, .form-group input:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(0, 98, 155, 0.2);
-    }
-
-    /* Contact Section (retained) */
-    #contact-us .section-description {
-      text-align: center;
-      max-width: 800px;
-      margin: auto auto 2rem auto;
-    }
-
-    .contact-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      align-items: stretch;
-    }
-
-    .contact-method {
-      flex: 1 1 280px;
-      max-width: 350px;
-      background: white;
-      border-radius: 10px;
-      padding: 2rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0; /* Initial state for animate-on-scroll */
-      transform: translateY(30px) scale(0.95); /* Initial state for animate-on-scroll */
-    }
-
-    .contact-method:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-    }
-
-    .contact-method i {
-      font-size: 2.5rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-
-    .contact-method:hover i {
-      color: var(--secondary);
-      transform: scale(1.1);
-    }
-
-    .contact-method h3 {
-      margin-bottom: 0.5rem;
-      color: var(--dark);
-    }
-
-    .contact-form {
-      flex: 1 1 400px;
-      max-width: 500px;
-      background: var(--light);
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      text-align: left;
-      opacity: 0; /* Initial state for animate-on-scroll */
-      transform: translateY(30px) scale(0.95); /* Initial state for animate-on-scroll */
-    }
-
-    .submit-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      width: 100%;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .submit-btn:hover {
-      background: var(--dark);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-    }
-
-    .map-container {
-      flex: 1 1 400px;
-      max-width: 600px;
-      min-height: 300px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      opacity: 0; /* Initial state for animate-on-scroll */
-      transform: translateY(30px) scale(0.95); /* Initial state for animate-on-scroll */
-    }
-
-    .map-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    /* Footer Styling (retained) */
-    footer {
-      background: linear-gradient(135deg, var(--dark), var(--primary));
-      color: white;
-      padding: 3rem 0 1rem;
-      text-align: left;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: space-between;
-    }
-
-    .footer-section {
-      flex: 1 1 250px;
-      min-width: 200px;
-    }
-
-    .footer-section h3 {
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-      border-bottom: 2px solid var(--secondary);
-      padding-bottom: 5px;
-      display: inline-block;
-    }
-
-    .footer-section ul {
-      list-style: none;
-    }
-
-    .footer-section ul li {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-section ul li a,
-    .footer-section ul li {
-      color: white;
-      transition: color 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .footer-section ul li a:hover {
-      color: var(--secondary);
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .social-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      color: white;
-      transition: all 0.3s ease, transform 0.2s ease;
-    }
-
-    .social-links a:hover {
-      background: var(--secondary);
-      color: var(--dark);
-      transform: translateY(-5px) scale(1.1);
-    }
-
-    .copyright {
-      text-align: center;
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-
-    /* Animations (retained) */
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(30px) scale(0.95);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .animate-on-scroll.animated {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes rotateBackground {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes panBackground {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 100% 100%; }
-    }
-
-    /* Custom Modal for Form Submission (retained) */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1001;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.4);
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .modal-content {
-      background-color: #fefefe;
-      margin: auto;
-      padding: 2rem;
-      border: 1px solid #888;
-      width: 90%;
-      max-width: 400px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      text-align: center;
-      position: relative;
-      animation: fadeIn 0.3s ease-out;
-    }
-
-    .close-button {
-      color: #aaa;
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    .close-button:hover,
-    .close-button:focus {
-      color: #000;
-      text-decoration: none;
-    }
-
-    .modal-content h3 {
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .modal-content p {
-      margin-bottom: 1.5rem;
-    }
-
-    .modal-content .cta-button {
-      width: auto;
-      padding: 0.6rem 1.5rem;
-    }
-
-    /* NoScript Warning (retained) */
-    noscript {
-      display: block;
-      background: #fee;
-      color: #a00;
-      text-align: center;
-      padding: 1rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-
-    /* Responsive adjustments (retained) */
-    @media (max-width: 992px) {
-      .header-container {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .logo {
-        margin-bottom: 1rem;
-      }
-
-      nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      nav ul li {
-        margin: 0 0.5rem 0.5rem;
-      }
-
-      .contact-content {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .contact-form, .map-container {
-        max-width: 100%;
-      }
-    }
-
-    @media (max-width: 768px) {
-      section {
-        padding: 2rem 1rem;
-      }
-
-      .section-title {
-        font-size: 2rem;
-      }
-
-      .contact-method {
-        flex: 1 1 100%;
-        max-width: 100%;
-      }
-
-      .footer-container {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .footer-section {
-        min-width: unset;
-        width: 100%;
-      }
-
-      .footer-section h3 {
-        margin: 1rem auto 1rem;
-      }
-
-      .footer-section ul li, .social-links {
-        justify-content: center;
-      }
-    }
-
-    /* --- ENHANCED BUTTON STYLES --- */
-    .cta-button {
-      /* Existing styles */
-      background: var(--primary); /* Fallback */
-      color: white;
-      border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      display: inline-block;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-
-      /* New: Gradient background */
-      background-image: linear-gradient(to right, var(--primary) 0%, var(--accent) 100%);
-      background-size: 200% auto; /* For hover effect */
-      text-shadow: 0 1px 2px rgba(0,0,0,0.2); /* Subtle text shadow */
-    }
-
-    .cta-button:hover {
-      background-position: right center; /* Shift gradient on hover */
-      background-image: linear-gradient(to right, var(--dark) 0%, var(--primary) 100%); /* Darker gradient on hover */
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Specific styles for the "pulse" button (e.g., in Hero section) */
-    .cta-button.pulse {
-      animation: pulse 2s infinite;
-      box-shadow: 0 0 0 0 rgba(0, 98, 155, 0.7); /* Initial pulse shadow */
-      animation: pulse-shadow 2s infinite;
-    }
-
-    @keyframes pulse-shadow {
-      0% { box-shadow: 0 0 0 0 rgba(0, 98, 155, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(0, 98, 155, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(0, 98, 155, 0); }
-    }
-
-    /* Adjustments for the AI Helper buttons to ensure they look good */
-    .ai-helper-feature .cta-button {
-      margin-top: 1rem;
-      width: auto; /* Allow button to size naturally */
-      display: block; /* Make button full width of its container */
-      margin-left: auto;
-      margin-right: auto;
-      min-width: 200px; /* Ensure a minimum width for consistency */
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Official website of the IEEE ET5 Student Branch at New Cairo Academy, Fifth Settlement. Discover our events, educational, and technical resources.">
+    <meta property="og:title" content="IEEE ET5 Student Branch - Institute of Engineering and Technology, Fifth Settlement">
+    <meta property="og:description" content="Official website of the IEEE ET5 Student Branch at the Institute of Engineering and Technology, Fifth Settlement. Discover our events, educational, and technical resources.">
+    <meta property="og:image" content="https://www.ieee.org/content/dam/ieee-web/standards/images/logo.svg ">
+    <meta property="og:url" content="https://yourwebsite.com ">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>IEEE ET5 Student Branch</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css ">
+
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'GA_MEASUREMENT_ID'); // Replace 'GA_MEASUREMENT_ID' with your actual Google Analytics Measurement ID
+    </script>
+
+    <style>
+        /* Root variables for consistent theming */
+        :root {
+            --primary: #00629B;
+            /* IEEE Blue */
+            --secondary: #FFD100;
+            /* IEEE Gold */
+            --dark: #003865;
+            /* Dark Blue */
+            --light: #E9F1F7;
+            /* Light Grayish Blue */
+            --accent: #00A5E3;
+            /* Lighter Blue */
+            --success: #28a745;
+            /* Green for success messages */
+            --error: #dc3545;
+            /* Red for error messages */
+        }
+
+        /* Universal box-sizing and font family */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            /* Keeping Tajawal for now, but can be changed to an English font */
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light);
+            /* Base background color */
+            scroll-behavior: smooth;
+            /* Smooth scrolling for anchor links */
+            /* Subtle background pattern for the entire page (parallax effect) */
+            background-image: radial-gradient(circle at 10% 20%, rgba(0, 98, 155, 0.05) 5%, transparent 5%),
+                /* Increased opacity */
+                radial-gradient(circle at 90% 80%, rgba(255, 209, 0, 0.05) 5%, transparent 5%);
+            /* Increased opacity */
+            background-size: 50px 50px, 50px 50px;
+            /* Size of the repeating dots */
+            background-attachment: fixed;
+            /* Makes background fixed relative to viewport for parallax */
+        }
+
+        /* Basic Typography */
+        h1,
+        h2,
+        h3 {
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Lazy loading image effect */
+        img[loading="lazy"] {
+            opacity: 0.8;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        img[loading="lazy"]:loaded {
+            opacity: 1;
+        }
+
+        /* Header Styling */
+        header#header {
+            background: linear-gradient(120deg, var(--primary), var(--accent));
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, border-bottom 0.3s ease;
+            /* Smooth transition for background and border */
+        }
+
+        /* Header background when scrolled */
+        header#header.scrolled {
+            background-color: var(--dark);
+            /* Solid dark blue when scrolled */
+            border-bottom: 3px solid var(--secondary);
+            /* Add a border on scroll */
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+            /* Space between logo and text for LTR */
+            border-radius: 50%;
+            /* Make logo round */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            /* Subtle shadow for logo */
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            padding-bottom: 5px;
+            /* Space for underline effect */
+        }
+
+        /* Navigation underline effect */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            /* For LTR */
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            right: 0;
+            /* For LTR */
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            /* Slightly larger for touch */
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile navigation */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                background: var(--primary);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                display: block;
+                animation: fadeIn 0.5s ease;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 1rem 0;
+                text-align: left;
+                /* Align to left for LTR */
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+                padding: 0 1rem;
+            }
+        }
+
+        main {
+            padding: 0; /* Remove padding from main to allow sections to span full width */
+            max-width: 100%; /* Make main take full width */
+            margin: 0; /* Remove margin from main */
+            position: relative;
+            z-index: 2;
+            background-color: transparent;
+        }
+
+        section {
+            padding: 4rem 2rem; /* Keep existing padding for content inside sections */
+            direction: ltr;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background-color: white;
+            border-radius: 0; /* Remove border-radius for full width sections */
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        #ai-helper-section {
+             background: var(--light);
+             padding-top: 4rem;
+             padding-bottom: 4rem;
+        }
+
+        /* Hero Section Specific Styles and Animations */
+        #home {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+            border-radius: 0; /* Remove border-radius for full width */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #home .section-title {
+            color: white;
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.2s;
+        }
+
+        #home p {
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.4s;
+        }
+
+        #home .cta-button {
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.6s;
+        }
+
+        /* Background animations for hero section */
+        #home::before,
+        #home::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.15;
+        }
+
+        #home::before {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 10%, transparent 70%);
+            animation: rotateBackground 20s linear infinite;
+            transform-origin: center center;
+        }
+
+        #home::after {
+            background: repeating-linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.05),
+                    rgba(255, 255, 255, 0.05) 10px,
+                    transparent 10px,
+                    transparent 20px);
+            animation: panBackground 30s linear infinite;
+            background-size: 40px 40px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 25%;
+            border-radius: 50px;
+        }
+
+        /* General card styling for AI Helper features */
+        .ai-helper-feature {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem; /* Space between features */
+            text-align: left;
+            border-left: 5px solid var(--secondary); /* A different border color for features within AI helper */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 800px; /* Max width for individual feature cards */
+            margin-left: auto;
+            margin-right: auto; /* Center the feature cards */
+        }
+
+        .ai-helper-feature:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .ai-helper-feature h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--light);
+            text-align: center; /* Center feature titles */
+        }
+
+        .ai-helper-feature p.description {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        .ai-helper-feature .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .ai-helper-feature .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .ai-helper-feature .cta-button {
+            margin-top: 1rem;
+            width: auto; /* Allow button to size naturally */
+            display: block; /* Make button full width of its container */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ai-helper-feature .loading-indicator {
+            display: none;
+            margin-top: 1rem;
+            color: var(--primary);
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        /* Specific styling for the generated output within AI Helper features */
+        .llm-output-container {
+            background: var(--light); /* Lighter background for the output itself */
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: left; /* Align text to the left for better readability */
+            display: none; /* Hidden by default */
+            border-left: 5px solid var(--primary); /* Primary color border for output */
+            white-space: pre-wrap; /* Preserve whitespace and newlines */
+            word-wrap: break-word; /* Break long words */
+        }
+
+        .llm-output-container h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--light); /* Subtle separator */
+        }
+        
+        .llm-output-container p {
+            margin-bottom: 1rem; /* Add spacing between paragraphs */
+            font-size: 1rem;
+            line-height: 1.8; /* Improve line spacing for readability */
+            color: #555;
+        }
+        
+        .llm-output-container p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Ensure placeholders are aligned with LTR */
+        .form-group textarea, .form-group input {
+            direction: ltr; /* Ensure LTR for input fields */
+            text-align: left; /* Align placeholder text to the left */
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group textarea:focus, .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 98, 155, 0.2);
+        }
+
+
+        /* Footer Styling (retained) */
+        footer {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: left;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1 1 250px;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a,
+        .footer-section ul li {
+            color: white;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Animations (retained) */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes rotateBackground {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes panBackground {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* NoScript Warning (retained) */
+        noscript {
+            display: block;
+            background: #fee;
+            color: #a00;
+            text-align: center;
+            padding: 1rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive adjustments (retained) */
+        @media (max-width: 992px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 0.5rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-section {
+                min-width: unset;
+                width: 100%;
+            }
+
+            .footer-section h3 {
+                margin: 1rem auto 1rem;
+            }
+
+            .footer-section ul li, .social-links {
+                justify-content: center;
+            }
+        }
+
+        /* --- ENHANCED BUTTON STYLES --- */
+        .cta-button {
+            /* Existing styles */
+            background: var(--primary); /* Fallback */
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+
+            /* New: Gradient background */
+            background-image: linear-gradient(to right, var(--primary) 0%, var(--accent) 100%);
+            background-size: 200% auto; /* For hover effect */
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2); /* Subtle text shadow */
+        }
+
+        .cta-button:hover {
+            background-position: right center; /* Shift gradient on hover */
+            background-image: linear-gradient(to right, var(--dark) 0%, var(--primary) 100%); /* Darker gradient on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Specific styles for the "pulse" button (e.g., in Hero section) */
+        .cta-button.pulse {
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 0 0 rgba(0, 98, 155, 0.7); /* Initial pulse shadow */
+            animation: pulse-shadow 2s infinite;
+        }
+
+        @keyframes pulse-shadow {
+            0% { box-shadow: 0 0 0 0 rgba(0, 98, 155, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 98, 155, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 98, 155, 0); }
+        }
+
+        /* Adjustments for the AI Helper buttons to ensure they look good */
+        .ai-helper-feature .cta-button {
+            margin-top: 1rem;
+            width: auto; /* Allow button to size naturally */
+            display: block; /* Make button full width of its container */
+            margin-left: auto;
+            margin-right: auto;
+            min-width: 200px; /* Ensure a minimum width for consistency */
+        }
+    </style>
 </head>
 <body>
 
@@ -856,7 +723,7 @@
           <li><a href="https://minal0p.github.io/IEEE-ET5-Membership/">Membership</a></li>
           <li><a href="https://minal0p.github.io/IEEE-ET5-Events/">Events</a></li>
           <li><a href="https://minal0p.github.io/IEEE-ET5-Resources/">Resources</a></li>
-          <li><a href="https://minal0p.github.io/IEEE-ET5-Our-Family/">Our Family</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5-Our-Family/#our-family">Our Family</a></li>
           <li><a href="https://minal0p.github.io/IEEE-ET5-Ai/">AI Helper</a></li>
           <li><a href="https://minal0p.github.io/IEEE-ET5/#contact-us">Contact Us</a></li>
         </ul>
@@ -871,10 +738,10 @@
       <p style="margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
         A student community under the patronage of the Institute of Electrical and Electronics Engineers (IEEE) International, we strive to empower the next generation of engineers.
       </p>
-      <a href="#ieee-et5-ai-helper" class="cta-button pulse">Explore AI Helper</a>
+      <a href="#ai-helper-section" class="cta-button pulse">Explore AI Helper</a>
     </section>
 
-    <section id="ieee-et5-ai-helper" class="animate-on-scroll">
+    <section id="ai-helper-section" class="animate-on-scroll">
       <h2 class="section-title">IEEE ET5 AI Helper ✨</h2>
       <p style="text-align:center; max-width: 800px; margin: auto auto 3rem auto;">
         Your intelligent assistant for all things IEEE ET5! Get help with resources, career paths, project ideas, and more.
@@ -1041,7 +908,7 @@
           <li><a href="https://minal0p.github.io/IEEE-ET5-Membership/">Membership</a></li>
           <li><a href="https://minal0p.github.io/IEEE-ET5-Events/">Events</a></li>
           <li><a href="https://minal0p.github.io/IEEE-ET5-Resources/">Resources</a></li>
-          <li><a href="https://minal0p.github.io/IEEE-ET5-Our-Family/">Our Family</a></li>
+          <li><a href="https://minal0p.github.io/IEEE-ET5-Our-Family/#our-family">Our Family</a></li>
           <li><a href="https://minal0p.github.io/IEEE-ET5-Ai/">AI Helper</a></li>
           <li><a href="https://minal0p.github.io/IEEE-ET5/#contact-us">Contact Us</a></li>
         </ul>
@@ -1161,68 +1028,7 @@
         ctaButton.classList.toggle('pulse');
       }, 2000);
     }
-
-    // Contact Form Submission and Custom Modal (retained)
-    const contactForm = document.getElementById('contactForm');
-    const successModal = document.getElementById('successModal');
-    const closeButton = document.querySelector('.close-button');
-    const modalCloseButton = document.getElementById('modalCloseButton');
-
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent default form submission
-
-        // Basic form validation
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const message = document.getElementById('message').value.trim();
-
-        if (name === '' || email === '' || message === '') {
-          alert('Please fill in all required fields.');
-          return;
-        }
-
-        // Simple email validation regex
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-          alert('Please enter a valid email address.');
-          return;
-        }
-
-        // Simulate form submission (e.g., send data to a server)
-        console.log('Form Submitted:', { name, email, message });
-
-        // Show the custom success modal
-        successModal.style.display = 'flex'; // Use flex to center content
-
-        // Reset the form after successful submission
-        this.reset();
-      });
-    }
-
-    // Close modal when close button (x) is clicked
-    if (closeButton) {
-      closeButton.addEventListener('click', function() {
-        successModal.style.display = 'none';
-      });
-    }
-
-    // Close modal when "Okay" button is clicked
-    if (modalCloseButton) {
-      modalCloseButton.addEventListener('click', function() {
-        successModal.style.display = 'none';
-      });
-    }
-
-    // Close modal when clicking outside of the modal content
-    if (successModal) {
-      window.addEventListener('click', function(event) {
-        if (event.target == successModal) {
-          successModal.style.display = 'none';
-        }
-      });
-    }
-
+    
     // Helper function to handle API calls and update UI
     async function callGeminiAPI(prompt, loadingIndicator, outputDiv) {
         loadingIndicator.style.display = 'block';
@@ -1243,16 +1049,23 @@
                 body: JSON.stringify(payload)
             });
 
+            if (!response.ok) {
+                 const errorText = await response.text();
+                 throw new Error(`API Error: ${response.status} ${errorText}`);
+            }
+
             const result = await response.json();
 
             if (result.candidates && result.candidates.length > 0 &&
                 result.candidates[0].content && result.candidates[0].content.parts &&
                 result.candidates[0].content.parts.length > 0) {
                 const text = result.candidates[0].content.parts[0].text;
-                outputDiv.innerHTML = `<p>${text}</p>`;
+                // Basic formatting for lists
+                let formattedText = text.replace(/\n\*/g, '<br>•').replace(/\n-/g, '<br>-');
+                outputDiv.innerHTML = `<p>${formattedText}</p>`;
                 outputDiv.style.display = 'block';
             } else {
-                outputDiv.innerHTML = `<p style="color: var(--error);">Sorry, I couldn't generate a response. Please try again.</p>`;
+                outputDiv.innerHTML = `<p style="color: var(--error);">Sorry, I couldn't generate a response. The model returned an empty result. Please try again.</p>`;
                 outputDiv.style.display = 'block';
                 console.error('Gemini API response structure unexpected:', result);
             }
@@ -1266,172 +1079,80 @@
     }
 
     // Feature 1: Resource Explainer Logic
-    const explainResourceBtn = document.getElementById('explainResourceBtn');
-    const resourceExplainerInput = document.getElementById('resourceExplainerInput');
-    const resourceExplainerLoadingIndicator = document.getElementById('resourceExplainerLoadingIndicator');
-    const generatedResourceExplanationDiv = document.getElementById('generatedResourceExplanation');
-
-    if (explainResourceBtn) {
-        explainResourceBtn.addEventListener('click', async function() {
-            const resourceTerm = resourceExplainerInput.value.trim();
-            if (!resourceTerm) {
-                alert('Please enter a term or description to explain.');
-                return;
-            }
-            const prompt = `Explain the following technical term or concept in simple, easy-to-understand language, suitable for a student audience: "${resourceTerm}". Keep the explanation concise (2-4 sentences).`;
-            await callGeminiAPI(prompt, resourceExplainerLoadingIndicator, generatedResourceExplanationDiv);
-        });
-    }
+    document.getElementById('explainResourceBtn')?.addEventListener('click', async function() {
+        const input = document.getElementById('resourceExplainerInput').value.trim();
+        if (!input) { alert('Please enter a term or description to explain.'); return; }
+        const prompt = `Explain the following technical term or concept in simple, easy-to-understand language, suitable for a student audience: "${input}". Keep the explanation concise (2-4 sentences).`;
+        await callGeminiAPI(prompt, document.getElementById('resourceExplainerLoadingIndicator'), document.getElementById('generatedResourceExplanation'));
+    });
 
     // Feature 2: Study Buddy Logic
-    const askStudyBuddyBtn = document.getElementById('askStudyBuddyBtn');
-    const studyBuddyInput = document.getElementById('studyBuddyInput');
-    const studyBuddyLoadingIndicator = document.getElementById('studyBuddyLoadingIndicator');
-    const generatedStudyBuddyExplanationDiv = document.getElementById('generatedStudyBuddyExplanation');
-
-    if (askStudyBuddyBtn) {
-        askStudyBuddyBtn.addEventListener('click', async function() {
-            const question = studyBuddyInput.value.trim();
-            if (!question) {
-                alert('Please enter a question or concept for your Study Buddy.');
-                return;
-            }
-            const prompt = `As a study buddy for an IEEE student, explain the following concept or answer the question concisely and clearly, focusing on technical accuracy and ease of understanding: "${question}". Keep the explanation to 3-5 sentences.`;
-            await callGeminiAPI(prompt, studyBuddyLoadingIndicator, generatedStudyBuddyExplanationDiv);
-        });
-    }
+    document.getElementById('askStudyBuddyBtn')?.addEventListener('click', async function() {
+        const input = document.getElementById('studyBuddyInput').value.trim();
+        if (!input) { alert('Please enter a question or concept for your Study Buddy.'); return; }
+        const prompt = `As a study buddy for an IEEE student, explain the following concept or answer the question concisely and clearly, focusing on technical accuracy and ease of understanding: "${input}". Keep the explanation to 3-5 sentences.`;
+        await callGeminiAPI(prompt, document.getElementById('studyBuddyLoadingIndicator'), document.getElementById('generatedStudyBuddyExplanation'));
+    });
 
     // Feature 3: Discover Your Career Path Logic
-    const suggestCareerPathBtn = document.getElementById('suggestCareerPathBtn');
-    const interestsInput = document.getElementById('interestsInput');
-    const careerLoadingIndicator = document.getElementById('careerLoadingIndicator');
-    const generatedCareerPathDiv = document.getElementById('generatedCareerPath');
-
-    if (suggestCareerPathBtn) {
-        suggestCareerPathBtn.addEventListener('click', async function() {
-            const interests = interestsInput.value.trim();
-            if (!interests) {
-                alert('Please enter your interests to suggest a career path.');
-                return;
-            }
-            const prompt = `Based on the following interests: "${interests}", suggest 3-5 career paths in engineering and technology fields, and mention relevant IEEE areas for each path. Provide a title for each path and a brief description (2-3 sentences) in English.`;
-            await callGeminiAPI(prompt, careerLoadingIndicator, generatedCareerPathDiv);
-        });
-    }
+    document.getElementById('suggestCareerPathBtn')?.addEventListener('click', async function() {
+        const input = document.getElementById('interestsInput').value.trim();
+        if (!input) { alert('Please enter your interests to suggest a career path.'); return; }
+        const prompt = `Based on the following interests: "${input}", suggest 3-5 career paths in engineering and technology fields, and mention relevant IEEE areas for each path. Provide a title for each path and a brief description (2-3 sentences) in English. Format each path with a bolded title.`;
+        await callGeminiAPI(prompt, document.getElementById('careerLoadingIndicator'), document.getElementById('generatedCareerPath'));
+    });
 
     // Feature 4: Project Idea Generator Logic
-    const generateProjectIdeaBtn = document.getElementById('generateProjectIdeaBtn');
-    const projectTopicInput = document.getElementById('projectTopicInput');
-    const projectIdeaLoadingIndicator = document.getElementById('projectIdeaLoadingIndicator');
-    const generatedProjectIdeasDiv = document.getElementById('generatedProjectIdeas');
-
-    if (generateProjectIdeaBtn) {
-        generateProjectIdeaBtn.addEventListener('click', async function() {
-            const topic = projectTopicInput.value.trim();
-            if (!topic) {
-                alert('Please enter a topic or keywords to generate project ideas.');
-                return;
-            }
-            const prompt = `Generate 3-5 innovative project ideas for an IEEE student, related to the topic/keywords: "${topic}". For each idea, provide a title and a brief description (2-3 sentences) outlining its purpose and potential technologies. Focus on engineering, technology, or computer science fields.`;
-            await callGeminiAPI(prompt, projectIdeaLoadingIndicator, generatedProjectIdeasDiv);
-        });
-    }
+    document.getElementById('generateProjectIdeaBtn')?.addEventListener('click', async function() {
+        const input = document.getElementById('projectTopicInput').value.trim();
+        if (!input) { alert('Please enter a topic or keywords to generate project ideas.'); return; }
+        const prompt = `Generate 3-5 innovative project ideas for an IEEE student, related to the topic/keywords: "${input}". For each idea, provide a title and a brief description (2-3 sentences) outlining its purpose and potential technologies. Focus on engineering, technology, or computer science fields. Format each idea with a bolded title.`;
+        await callGeminiAPI(prompt, document.getElementById('projectIdeaLoadingIndicator'), document.getElementById('generatedProjectIdeas'));
+    });
 
     // Feature 5: Research Paper Assistant Logic
-    const summarizeResearchBtn = document.getElementById('summarizeResearchBtn');
-    const researchPaperInput = document.getElementById('researchPaperInput');
-    const researchLoadingIndicator = document.getElementById('researchLoadingIndicator');
-    const generatedResearchSummaryDiv = document.getElementById('generatedResearchSummary');
-
-    if (summarizeResearchBtn) {
-        summarizeResearchBtn.addEventListener('click', async function() {
-            const paperText = researchPaperInput.value.trim();
-            if (!paperText) {
-                alert('Please paste text from a research paper to summarize.');
-                return;
-            }
-            const prompt = `Summarize the following research paper text concisely, highlighting the main objective, methodology, and key findings. Keep the summary to 4-6 sentences. Text: "${paperText}"`;
-            await callGeminiAPI(prompt, researchLoadingIndicator, generatedResearchSummaryDiv);
-        });
-    }
+    document.getElementById('summarizeResearchBtn')?.addEventListener('click', async function() {
+        const input = document.getElementById('researchPaperInput').value.trim();
+        if (!input) { alert('Please paste text from a research paper to summarize.'); return; }
+        const prompt = `Summarize the following research paper text concisely, highlighting the main objective, methodology, and key findings. Keep the summary to 4-6 sentences. Text: "${input}"`;
+        await callGeminiAPI(prompt, document.getElementById('researchLoadingIndicator'), document.getElementById('generatedResearchSummary'));
+    });
 
     // Feature 6: Technical Terminology Simplifier Logic
-    const simplifyTermBtn = document.getElementById('simplifyTermBtn');
-    const simplifyTermInput = document.getElementById('simplifyTermInput');
-    const simplifyTermLoadingIndicator = document.getElementById('simplifyTermLoadingIndicator');
-    const generatedSimplifiedTermDiv = document.getElementById('generatedSimplifiedTerm');
-
-    if (simplifyTermBtn) {
-        simplifyTermBtn.addEventListener('click', async function() {
-            const term = simplifyTermInput.value.trim();
-            if (!term) {
-                alert('Please enter a technical term to simplify.');
-                return;
-            }
-            const prompt = `Simplify the following complex technical term or concept for a general audience, using analogies if helpful: "${term}". Keep the explanation concise (2-4 sentences).`;
-            await callGeminiAPI(prompt, simplifyTermLoadingIndicator, generatedSimplifiedTermDiv);
-        });
-    }
+    document.getElementById('simplifyTermBtn')?.addEventListener('click', async function() {
+        const input = document.getElementById('simplifyTermInput').value.trim();
+        if (!input) { alert('Please enter a technical term to simplify.'); return; }
+        const prompt = `Simplify the following complex technical term or concept for a general audience, using analogies if helpful: "${input}". Keep the explanation concise (2-4 sentences).`;
+        await callGeminiAPI(prompt, document.getElementById('simplifyTermLoadingIndicator'), document.getElementById('generatedSimplifiedTerm'));
+    });
 
     // Feature 7: Event Planning Assistant Logic
-    const planEventBtn = document.getElementById('planEventBtn');
-    const eventPlanningInput = document.getElementById('eventPlanningInput');
-    const eventPlanningLoadingIndicator = document.getElementById('eventPlanningLoadingIndicator');
-    const generatedEventPlanDiv = document.getElementById('generatedEventPlan');
-
-    if (planEventBtn) {
-        planEventBtn.addEventListener('click', async function() {
-            const eventTopic = eventPlanningInput.value.trim();
-            if (!eventTopic) {
-                alert('Please enter an event type or topic to get planning suggestions.');
-                return;
-            }
-            const prompt = `Suggest a brief agenda (3-5 key points), 2-3 potential speaker topics, and 2-3 interactive activities for an IEEE student branch event focused on "${eventTopic}". Format as a list of agenda items, then speaker topics, then activities.`;
-            await callGeminiAPI(prompt, eventPlanningLoadingIndicator, generatedEventPlanDiv);
-        });
-    }
+    document.getElementById('planEventBtn')?.addEventListener('click', async function() {
+        const input = document.getElementById('eventPlanningInput').value.trim();
+        if (!input) { alert('Please enter an event type or topic to get planning suggestions.'); return; }
+        const prompt = `Suggest a brief agenda (3-5 key points), 2-3 potential speaker topics, and 2-3 interactive activities for an IEEE student branch event focused on "${input}". Format as a list of agenda items, then speaker topics, then activities. Use bullet points.`;
+        await callGeminiAPI(prompt, document.getElementById('eventPlanningLoadingIndicator'), document.getElementById('generatedEventPlan'));
+    });
 
     // Feature 8: Code Explainer/Debugger Logic
-    const explainCodeBtn = document.getElementById('explainCodeBtn');
-    const codeExplainerInput = document.getElementById('codeExplainerInput');
-    const codeExplainerLoadingIndicator = document.getElementById('codeExplainerLoadingIndicator');
-    const generatedCodeExplanationDiv = document.getElementById('generatedCodeExplanation');
-
-    if (explainCodeBtn) {
-        explainCodeBtn.addEventListener('click', async function() {
-            const codeSnippet = codeExplainerInput.value.trim();
-            if (!codeSnippet) {
-                alert('Please paste a code snippet.');
-                return;
-            }
-            const prompt = `Explain the following code snippet and identify any potential bugs or suggest improvements. If there are bugs, suggest fixes. Keep the explanation concise. Code: \n\`\`\`\n${codeSnippet}\n\`\`\``;
-            await callGeminiAPI(prompt, codeExplainerLoadingIndicator, generatedCodeExplanationDiv);
-        });
-    }
+    document.getElementById('explainCodeBtn')?.addEventListener('click', async function() {
+        const input = document.getElementById('codeExplainerInput').value.trim();
+        if (!input) { alert('Please paste a code snippet.'); return; }
+        const prompt = `Explain the following code snippet and identify any potential bugs or suggest improvements. If there are bugs, suggest fixes. Format the output clearly. Code: \n\`\`\`\n${input}\n\`\`\``;
+        await callGeminiAPI(prompt, document.getElementById('codeExplainerLoadingIndicator'), document.getElementById('generatedCodeExplanation'));
+    });
 
     // Feature 9: Study Plan Generator Logic
-    const generateStudyPlanBtn = document.getElementById('generateStudyPlanBtn');
-    const studyPlanTopicInput = document.getElementById('studyPlanTopicInput');
-    const studyPlanDurationInput = document.getElementById('studyPlanDurationInput');
-    const studyPlanLoadingIndicator = document.getElementById('studyPlanLoadingIndicator');
-    const generatedStudyPlanDiv = document.getElementById('generatedStudyPlan');
-
-    if (generateStudyPlanBtn) {
-        generateStudyPlanBtn.addEventListener('click', async function() {
-            const topic = studyPlanTopicInput.value.trim();
-            const duration = studyPlanDurationInput.value.trim();
-            if (!topic) {
-                alert('Please enter a topic or course to generate a plan.');
-                return;
-            }
-            let prompt = `Generate a study plan for "${topic}".`;
-            if (duration) {
-                prompt += ` The study plan should be designed for a duration of "${duration}".`;
-            }
-            prompt += ` Include key concepts, recommended learning activities, and potential resources. Be concise.`;
-            await callGeminiAPI(prompt, studyPlanLoadingIndicator, generatedStudyPlanDiv);
-        });
-    }
+    document.getElementById('generateStudyPlanBtn')?.addEventListener('click', async function() {
+        const topic = document.getElementById('studyPlanTopicInput').value.trim();
+        const duration = document.getElementById('studyPlanDurationInput').value.trim();
+        if (!topic) { alert('Please enter a topic or course to generate a plan.'); return; }
+        let prompt = `Generate a study plan for "${topic}".`;
+        if (duration) { prompt += ` The study plan should be designed for a duration of "${duration}".`; }
+        prompt += ` Include key concepts, recommended learning activities, and potential resources. Format it as a structured plan with clear sections.`;
+        await callGeminiAPI(prompt, document.getElementById('studyPlanLoadingIndicator'), document.getElementById('generatedStudyPlan'));
+    });
   </script>
 </body>
+
 </html>
